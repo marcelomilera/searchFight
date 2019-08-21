@@ -1,0 +1,11 @@
+C:\Users\MARCELO\Desktop\Uni\searchFight\bin\Debug\netcoreapp2.2\searchFight.deps.json
+C:\Users\MARCELO\Desktop\Uni\searchFight\bin\Debug\netcoreapp2.2\searchFight.runtimeconfig.json
+C:\Users\MARCELO\Desktop\Uni\searchFight\bin\Debug\netcoreapp2.2\searchFight.runtimeconfig.dev.json
+C:\Users\MARCELO\Desktop\Uni\searchFight\bin\Debug\netcoreapp2.2\searchFight.dll
+C:\Users\MARCELO\Desktop\Uni\searchFight\bin\Debug\netcoreapp2.2\searchFight.pdb
+C:\Users\MARCELO\Desktop\Uni\searchFight\obj\Debug\netcoreapp2.2\searchFight.csprojAssemblyReference.cache
+C:\Users\MARCELO\Desktop\Uni\searchFight\obj\Debug\netcoreapp2.2\searchFight.csproj.CoreCompileInputs.cache
+C:\Users\MARCELO\Desktop\Uni\searchFight\obj\Debug\netcoreapp2.2\searchFight.AssemblyInfoInputs.cache
+C:\Users\MARCELO\Desktop\Uni\searchFight\obj\Debug\netcoreapp2.2\searchFight.AssemblyInfo.cs
+C:\Users\MARCELO\Desktop\Uni\searchFight\obj\Debug\netcoreapp2.2\searchFight.dll
+C:\Users\MARCELO\Desktop\Uni\searchFight\obj\Debug\netcoreapp2.2\searchFight.pdb

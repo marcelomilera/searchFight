@@ -1,0 +1,7 @@
+searchFight
+    Queries search engines and compares how many results they return
+
+    Syntax:
+        searchFight <keywords>
+    
+        keywords: list of space-separated words that will be queried on the search engines
