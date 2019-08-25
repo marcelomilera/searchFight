@@ -10,9 +10,11 @@ namespace searchFight
             if (args.Length > 0)
             {
                 BingEngine bingEngine = new BingEngine();
+                ContextualEngine contextualEngine = new ContextualEngine();
                 foreach (var searchTerm in args)
                 {
                     bingEngine.search(searchTerm);
+                    contextualEngine.search(searchTerm);
                 }
                 return 0;
             }
