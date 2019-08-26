@@ -7,37 +7,11 @@ namespace searchFight
 {
     abstract class BaseEngine
     {
-        public struct SearchResult
-        {
-            public String jsonResult;
-            public Dictionary<String, String> relevantHeaders;
-        }
+        public string jsonResult;
 
         public abstract bool isValidAPIKey();
 
-        public void search(string searchTerm){
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
-            if (isValidAPIKey())
-            {
-                Console.WriteLine("Searching the Web for: " + searchTerm);
-                SearchResult result = webSearch(searchTerm);
-                Console.WriteLine("\nRelevant HTTP Headers:\n");
-                foreach (var header in result.relevantHeaders)
-                    Console.WriteLine(header.Key + ": " + header.Value);
-
-                Console.WriteLine("\nJSON Response:\n");
-                Console.WriteLine(IOUtils.JsonPrettyPrint(result.jsonResult));
-            }
-            else
-            {
-                Console.WriteLine("Invalid Contextual Search API subscription key!");
-                Console.WriteLine("Please paste yours into the source code.");
-            }
-            Console.Write("\nPress Enter to exit ");
-            Console.ReadLine();
-        }
-
-        public SearchResult webSearch(string searchTerm)
+        public string webSearch(string searchTerm)
         {
             // Construct the search request URI.
             var uriQuery = constructURIQuery(searchTerm);
@@ -47,38 +21,36 @@ namespace searchFight
             
             // Perform request and get a response.
             HttpWebResponse response = (HttpWebResponse)request.GetResponseAsync().Result;
-            string json = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            jsonResult = new StreamReader(response.GetResponseStream(), System.Text.Encoding.UTF8).ReadToEnd();
 
-            // Create a result object.
-            var searchResult = new SearchResult()
-            {
-                jsonResult = json,
-                relevantHeaders = new Dictionary<String, String>()
-            };
-
-            // Extract Contextual HTTP headers.
-            foreach (String header in response.Headers)
-            {
-                if (header.StartsWith("ContextualAPIs-") || header.StartsWith("X-MSEdge-"))
-                    searchResult.relevantHeaders[header] = response.Headers[header];
-            }
-            return searchResult;
+            return jsonResult;
         }
 
-        //CONSTRUCT URI QUERY
+        public string search(string searchTerm){
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            if (isValidAPIKey())
+            {
+                string jsonResult = webSearch(searchTerm);
+                return jsonResult;
+            }
+            else
+            {
+                Console.WriteLine("Invalid Contextual Search API subscription key!");
+                return "";
+            }
+        }
+
         public abstract string constructURIQuery(string searchTerm);
-        //CONSTRUCT REQUEST
+
         public WebRequest createRequest(string uriQuery){
             WebRequest request = HttpWebRequest.Create(uriQuery);
             request = addHeaders(request);
             return request;
         }
-        //ADD HEADERS
+
         public abstract WebRequest addHeaders(WebRequest request);
-        //ADD PARAMS METHOD
+
         public abstract string addParameters(string uriQuery);
-        //EXTRACT COUNT FROM JSON RESPONSE
-        public abstract string extractCountFromResponse();
-        
+
     }
 }

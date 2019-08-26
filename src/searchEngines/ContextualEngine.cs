@@ -2,6 +2,8 @@ using System;
 using System.Net;
 using System.IO;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Json;
+using System.Text;
 
 namespace searchFight
 {
@@ -40,8 +42,15 @@ namespace searchFight
             return uriQuery;
         }
 
-        public override string extractCountFromResponse(){
-            return "";
+        public int getSearchCount(string searchTerm){
+            string json = this.search(searchTerm);
+            var ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
+            var ser = new DataContractJsonSerializer(typeof(ContextualJsonResponse));
+            ms.Position = 0;
+            ContextualJsonResponse contextualJsonResponse = (ContextualJsonResponse) ser.ReadObject(ms);
+            if (contextualJsonResponse != null)
+                return contextualJsonResponse.totalCount;
+            return 0;
         }
     }
 }

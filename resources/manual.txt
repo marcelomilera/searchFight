@@ -1,7 +1,11 @@
 searchFight
     Queries search engines and compares how many results they return
+    This application currently supports the following search engines:
+        Bing: https://www.bing.com
+        Contextual web search: https://www.contextualwebsearch.com
 
     Syntax:
         searchFight <keywords>
     
         keywords: list of space-separated words that will be queried on the search engines
+        Use double quotes (") to search for terms with spaces (e.g. "java 8")
