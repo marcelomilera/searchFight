@@ -6,7 +6,7 @@ namespace searchFight
 {
     class Program
     {
-        static int Main(string[] args)
+        static void Main(string[] args)
         {
             if (args.Length > 0)
             {
@@ -40,13 +40,11 @@ namespace searchFight
                 Console.WriteLine($"Bing winner: {bingWinner}");
                 Console.WriteLine($"Contextual Web Search winner: {contextualWinner}");
                 Console.WriteLine($"Total winner: {totalWinner}");
-                return 0;
             }
             else
             {
                 Console.WriteLine("Please enter arguments");
                 IOUtils.printManual();
-                return 1;
             }
         }
     }
